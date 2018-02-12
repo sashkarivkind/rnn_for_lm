@@ -18,13 +18,18 @@ class hyper_params:
 		self.num_steps = 100
 		self.using_gru = 0
 		self.num_epochs = 100
+		self.cont_prev_run=None
+		self.cont_iter=None
 		self.verbose = 1
 		self.dropout = {'hh':0.95 , 'ih':1.0}
+		self.theta_to_exclude =[]
 
 	def parse_from_command_line(self,command_line):
+		print('\n\n\ parsing command line \n\n')
 		for command in command_line:
 			if command.find('=')>-1:
 				param_name,param_val = command.split('=')
+				print('debug:', param_val)
 				param_val = ast.literal_eval(param_val)
 				self.__dict__[param_name]=param_val
 	def as_dict(self):

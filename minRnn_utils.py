@@ -7,6 +7,7 @@ import sys
 import scipy.cluster.hierarchy as schi
 import pickle
 from termcolor import colored
+import matplotlib.pyplot as plt
 
 def prep_flatFromBatch(fun_name_list,x_in,y_in):
     fun_list=list(map(eval,fun_name_list))
@@ -305,6 +306,15 @@ def color_with_binary_labels(data,labels):
             colored_data+=colored(data[uu],cc)
     return colored_data
 
+def prep_no_2loops(N):
+    A=np.random.randn(N,N)
+    Q=A>0
+    Qb=A<0
+    return np.triu(Q,1)+np.triu(Qb,1).transpose()
+
+def plot_spectrum(A,sym='x'):
+    ee=np.linalg.eigvals(A)
+    plt.plot(ee.real,ee.imag,sym)
 
 
 

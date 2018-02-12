@@ -98,6 +98,20 @@ def define_weights_out(n_in,n_out):
     }
     return theta
 
+def define_weights_hopf(n_hidden, p_hopf):
+    theta = {
+
+        # hopfield part vectors
+        'hopf_v': tf.Variable(tf.random_normal(shape=[n_hidden, p_hopf],
+                                              seed=2,
+                                              mean=0.0,
+                                              stddev=1 / np.sqrt(n_hidden))),
+
+        # hopfield vector names
+        'hopf_mu': tf.Variable(tf.ones(shape=[p_hopf,1]))
+    }
+    return theta
+
 def basic_rnn_cell(rnn_input, state, theta, nph, layer_prefix='' ):
     Wih = theta[ layer_prefix+"w_input" ]
     Whh = theta[ layer_prefix+"w_hidden" ]
@@ -192,6 +206,15 @@ def run_epoch(sess, nph, hp, epoch_data , in_fun_with_fs, rand_ini=False, rand_s
         firstStepFlag = False
     return outRec, X_rec, Y_rec
 
+def prep_list_to_opt(theta,hp):
+    param_to_optimize=[]
+    if 'theta_to_exclude' not in hp.__dict__.keys():
+        hp.theta_to_exclude=[]
+    for this_key in theta.keys():
+        if this_key not in hp.theta_to_exclude:
+            param_to_optimize.append(theta[this_key])
+    return param_to_optimize
+
 class NetPlaceholders:
     def __init__(self,hp):
         self.x = tf.placeholder("float", [hp.BATCH_SIZE, hp.num_steps, hp.VOCAB_SIZE])
@@ -206,7 +229,9 @@ class NetFunctions:
     def __init__(self):
         pass
 
-    def create_recurrent_net_for_lm(self,hp,theta,nph):
+    def create_recurrent_net_for_lm(self,hp,theta,nph,theta_raw=None):
+        if theta_raw is None:
+            theta_raw=theta
         state = nph.init_state
         self.rnn_inputs = tf.unstack(nph.x, axis=1)
         self.rnn_outputs = []
@@ -225,7 +250,13 @@ class NetFunctions:
         self.losses = [tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logit, labels=label) for logit, label in
                   zip(self.logits, self.y_as_list)]
         self.cost = tf.reduce_mean(self.losses)
-        self.optimizer = tf.train.RMSPropOptimizer(hp.LEARNING_RATE).minimize(self.cost)
+        self.optimizer =\
+            tf.train.RMSPropOptimizer(hp.LEARNING_RATE).minimize(self.cost,var_list=prep_list_to_opt(theta_raw,hp))
         self.init = tf.global_variables_initializer()
 
 
+def clip_rho(W,rho_max):
+    [ee,vv]=np.linalg.eig(W)
+    ee_clip=ee/np.abs(ee)*np.minimum(np.abs(ee),rho_max)
+    return np.matmul(vv,
+                     np.matmul(np.diag(ee_clip),np.linalg.inv(vv))).real
