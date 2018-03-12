@@ -11,18 +11,23 @@ class hyper_params:
 		self.TRAIN_LIM = [0, 0.8]
 		self.VALIDATION_LIM = [0.8, 0.9]
 		self.N_HIDDEN = 512
-		self.LEARNING_RATE = 2e-3
+		self.LEARNING_RATE = 2e-4
 		self.X_sc = 1
 		self.BATCH_SIZE = 100
 		self.EPSILON = 1e-7
 		self.num_steps = 100
 		self.using_gru = 0
 		self.num_epochs = 100
+		self.detailed_layers = None
 		self.cont_prev_run=None
 		self.cont_iter=None
+		self.hidden_layers=3
+		self.layer_type=[0]+ ['rnn','gru','rnn']#['gru']*self.hidden_layers
+		self.num_layers = self.hidden_layers #legacy redundancy to be discarded in future release
 		self.verbose = 1
-		self.dropout = {'hh':0.95 , 'ih':1.0}
+		self.dropout = {'hh':0.98 , 'ih':0.95}
 		self.theta_to_exclude =[]
+		self.layer_size = [0]+[self.N_HIDDEN]*self.num_layers
 
 	def parse_from_command_line(self,command_line):
 		print('\n\n\ parsing command line \n\n')
