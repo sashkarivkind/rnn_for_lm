@@ -1,0 +1,70 @@
+step: 0   loss so far: 0.935855686665
+
+/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:472: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.
+
+step: 100   loss so far: 0.931934575633
+step: 200   loss so far: 0.938003275228
+step: 300   loss so far: 0.941756751648
+step: 400   loss so far: 0.94468522711
+step: 500   loss so far: 0.946621953608
+data has 99621832 characters, 81 unique.
+INFO:tensorflow:Restoring parameters from ./savedStates/./enwiki_enwiki_AE1_BEST_0.ckpt
+
+EPOCH 0
+step: 0   loss so far: 1.39280366898
+
+/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:472: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.
+
+step: 100   loss so far: 1.28652648761
+step: 200   loss so far: 1.29424901981
+step: 300   loss so far: 1.2988848112
+step: 400   loss so far: 1.30118906379
+step: 500   loss so far: 1.30153302447
+step: 600   loss so far: 1.29898874335
+step: 700   loss so far: 1.29538242521
+step: 800   loss so far: 1.29207054774
+step: 900   loss so far: 1.29127687831
+======================================================
+
+
+frozen non-trivial bit:
+
+EPOCH 0
+step: 0   loss so far: 0.950945675373
+
+/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:475: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.
+
+step: 100   loss so far: 0.94573790012
+step: 200   loss so far: 0.953063213707
+step: 300   loss so far: 0.956929529624
+step: 400   loss so far: 0.960345754748
+step: 500   loss so far: 0.962237573431
+step: 600   loss so far: 0.960143917016
+step: 700   loss so far: 0.956973959478
+step: 800   loss so far: 0.954007685259
+step: 900   loss so far: 0.953575801373
+Average loss at step 985 : todo!... Current loss 0.941385 mean accuracy 0.7205
+
+Training loss                     :  0.9529624348
+
+=============================
+frozen at one
+EPOCH 0
+step: 0   loss so far: 0.947218179703
+
+/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:475: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.
+
+step: 100   loss so far: 0.94934105283
+step: 200   loss so far: 0.954880786179
+step: 300   loss so far: 0.958454975456
+step: 400   loss so far: 0.961075808639
+step: 500   loss so far: 0.962924768349
+step: 600   loss so far: 0.960956738515
+step: 700   loss so far: 0.957770439681
+step: 800   loss so far: 0.954624254308
+step: 900   loss so far: 0.953919377166
+Average loss at step 985 : todo!... Current loss 0.944683 mean accuracy 0.7189
+Training loss                     :  0.953228996625 
+ Validation loss                   :  0.963662020486 
+
+

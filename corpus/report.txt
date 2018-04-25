@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+Processing file 'minRnn_games-TF_4-gbd.py.orig'
+ outputting to 'minRnn10_4-gbd.py'
+--------------------------------------------------------------------------------
+
+'minRnn_games-TF_4-gbd.py.orig' Line 233
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.mul' to 'tf.multiply'
+Renamed function 'tf.mul' to 'tf.multiply'
+
+    Old:     s = tf.mul( ( 1 - z ), h ) + tf.mul( z, state )
+                 ~~~~~~                   ~~~~~~             
+    New:     s = tf.multiply( ( 1 - z ), h ) + tf.multiply( z, state )
+                 ~~~~~~~~~~~                   ~~~~~~~~~~~             
+
+'minRnn_games-TF_4-gbd.py.orig' Line 292
+--------------------------------------------------------------------------------
+
+Added keyword 'logits' to reordered function 'tf.nn.sparse_softmax_cross_entropy_with_logits'
+Added keyword 'labels' to reordered function 'tf.nn.sparse_softmax_cross_entropy_with_logits'
+
+    Old: losses = [ tf.nn.sparse_softmax_cross_entropy_with_logits( logit, label ) for           logit, label in zip( logits, y_as_list ) ]
+                                                                                                                                            
+    New: losses = [ tf.nn.sparse_softmax_cross_entropy_with_logits( logits=logit, labels=label ) for           logit, label in zip( logits, y_as_list ) ]
+                                                                    ~~~~~~~       ~~~~~~~                                                                 
+
+'minRnn_games-TF_4-gbd.py.orig' Line 1014
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.mul' to 'tf.multiply'
+Renamed function 'tf.mul' to 'tf.multiply'
+
+    Old:     s = tf.mul( ( 1 - z ), h ) + tf.mul( z, state )
+                 ~~~~~~                   ~~~~~~             
+    New:     s = tf.multiply( ( 1 - z ), h ) + tf.multiply( z, state )
+                 ~~~~~~~~~~~                   ~~~~~~~~~~~             
+
+'minRnn_games-TF_4-gbd.py.orig' Line 262
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.unpack' to 'tf.unstack'
+
+    Old: rnn_inputs = tf.unpack( x, axis = 1 )
+                      ~~~~~~~~~                
+    New: rnn_inputs = tf.unstack( x, axis = 1 )
+                      ~~~~~~~~~~                
+
+'minRnn_games-TF_4-gbd.py.orig' Line 289
+--------------------------------------------------------------------------------
+
+Failed to rename keyword argument from 'squeeze_dims' to 'axis'
+Added keyword 'axis' to reordered function 'tf.split'
+Added keyword 'num_or_size_splits' to reordered function 'tf.split'
+Added keyword 'value' to reordered function 'tf.split'
+
+    Old: y_as_list = [ tf.squeeze( i, squeeze_dims = [ 1 ] ) for i in tf.split( 1, num_steps, y ) ]
+                                                                                                    
+    New: y_as_list = [ tf.squeeze( i, squeeze_dims = [ 1 ] ) for i in tf.split( axis=1, num_or_size_splits=num_steps, value=y ) ]
+                                                                                ~~~~~   ~~~~~~~~~~~~~~~~~~~           ~~~~~~      
+
+
